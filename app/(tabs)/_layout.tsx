@@ -1,45 +1,37 @@
+import { Feather, FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          switch (route.name) {
+            case 'home':
+              return <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color} />;
+            case 'shop':
+              return <Ionicons name={focused ? 'cart' : 'cart-outline'} size={size} color={color} />;
+            case 'category':
+              return <MaterialCommunityIcons name={focused ? 'shape' : 'shape-outline'} size={size} color={color} />;
+            case 'catalog':
+              return <FontAwesome name={focused ? 'list-alt' : 'list-ul'} size={size} color={color} />;
+            case 'filter':
+              return <Feather name="filter" size={size} color={color} />;
+            default:
+              return null;
+          }
+        },
+        tabBarActiveTintColor: '#D6281B',
+        tabBarInactiveTintColor: '#888',
         headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
+      })}
+    >
+      <Tabs.Screen name="home" options={{ title: 'Home' }} />
+  <Tabs.Screen name="shop" options={{ title: 'Shop' }} />
+      <Tabs.Screen name="category" options={{ title: 'Category' }} />
+      <Tabs.Screen name="catalog" options={{ title: 'Catalog' }} />
+      <Tabs.Screen name="filter" options={{ title: 'Filter' }} />
     </Tabs>
   );
 }
