@@ -92,7 +92,6 @@ export default function HomeScreen() {
         <Text style={styles.section}>Penawaran</Text>
         {[...Array(5)].map((_, rowIdx) => (
           <View key={rowIdx} style={styles.offerRow}>
-            <Text style={styles.offerTitle}>Penawaran {rowIdx + 1}</Text>
             <FlatList
               horizontal
               data={products}
