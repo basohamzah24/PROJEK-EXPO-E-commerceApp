@@ -3,11 +3,12 @@ import * as Font from 'expo-font';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Image, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ProductCard, { Product } from '../../src/components/ProductCard';
+import { useFavorites } from '../../src/context/FavoritesContext';
 
 
 export default function HomeScreen() {
   // Data produk
-  const products: Product[] = [
+  const initialProducts: Product[] = [
     {
       id: 1,
       name: 'Kaos Polos',
@@ -57,6 +58,19 @@ export default function HomeScreen() {
       favorite: false,
     },
   ];
+  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+
+  const handleFavorite = (id: number) => {
+    setProducts(prev => prev.map(p => p.id === id ? { ...p, favorite: !isFavorite(id) } : p));
+    const prod = products.find(p => p.id === id);
+    if (!prod) return;
+    if (!isFavorite(id)) {
+      addFavorite({ ...prod, favorite: true });
+    } else {
+      removeFavorite(id);
+    }
+  };
 
   // State untuk modal dan size
   const [modalVisible, setModalVisible] = useState(false);
@@ -97,7 +111,11 @@ export default function HomeScreen() {
               data={products}
               keyExtractor={(item: Product) => item.id + '-' + rowIdx}
               renderItem={({ item }) => (
-                <ProductCard item={item} onPress={() => setModalVisible(true)} />
+                <ProductCard
+                  item={{ ...item, favorite: isFavorite(item.id) }}
+                  onPress={() => setModalVisible(true)}
+                  onFavorite={() => handleFavorite(item.id)}
+                />
               )}
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={{ paddingHorizontal: 12 }}

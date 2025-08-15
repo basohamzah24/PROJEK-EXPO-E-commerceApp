@@ -21,9 +21,11 @@ export type Product = {
 interface ProductCardProps {
   item: Product;
   onPress: () => void;
+  onFavorite?: () => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = React.memo(({ item, onPress }) => {
+const ProductCard: React.FC<ProductCardProps> = React.memo((props) => {
+  const { item, onPress, onFavorite } = props;
   const [pressed, setPressed] = React.useState(false);
   return (
     <View style={[styles.cardHorizontal, pressed && styles.cardPressed]}>
@@ -41,7 +43,7 @@ const ProductCard: React.FC<ProductCardProps> = React.memo(({ item, onPress }) =
             <Text style={styles.discountText}>-{item.discount}%</Text>
           </View>
         )}
-        <TouchableOpacity style={styles.favBtn} activeOpacity={0.7}>
+  <TouchableOpacity style={styles.favBtn} activeOpacity={0.7} onPress={typeof onFavorite === 'function' ? onFavorite : undefined}>
           <Ionicons name={item.favorite ? 'heart' : 'heart-outline'} size={22} color={item.favorite ? '#D6281B' : '#888'} />
         </TouchableOpacity>
       </View>
