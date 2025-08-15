@@ -2,17 +2,33 @@ import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const categories = [
-  { label: 'New', image: require('../../assets/images/1.jpg') },
-  { label: 'Clothes', image: require('../../assets/images/2.jpg') },
-  { label: 'Shoes', image: require('../../assets/images/3.jpg') },
-  { label: 'Accessories', image: require('../../assets/images/4.jpg') },
-];
+const categoriesData = {
+  Women: [
+    { label: 'New', image: require('../../assets/images/1.jpg') },
+    { label: 'Clothes', image: require('../../assets/images/2.jpg') },
+    { label: 'Shoes', image: require('../../assets/images/3.jpg') },
+    { label: 'Accesories', image: require('../../assets/images/4.jpg') },
+  ],
+  Men: [
+    { label: 'New', image: require('../../assets/images/2.jpg') },
+    { label: 'Clothes', image: require('../../assets/images/3.jpg') },
+    { label: 'Shoes', image: require('../../assets/images/4.jpg') },
+    { label: 'Accesories', image: require('../../assets/images/1.jpg') },
+  ],
+  Kids: [
+    { label: 'New', image: require('../../assets/images/3.jpg') },
+    { label: 'Clothe', image: require('../../assets/images/4.jpg') },
+    { label: 'Shos', image: require('../../assets/images/1.jpg') },
+    { label: 'Accesorie', image: require('../../assets/images/2.jpg') },
+  ],
+} as { [key: string]: { label: string; image: any }[] };
 
-const tabs = ['Women', 'Men', 'Kids'];
+// const tabs = ['Women', 'Men', 'Kids'];
 
 export default function BagScreen() {
   const [activeTab, setActiveTab] = useState(0);
+  const tabNames = ['Women', 'Men', 'Kids'];
+  const categories: { label: string; image: any }[] = categoriesData[tabNames[activeTab]];
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -27,9 +43,10 @@ export default function BagScreen() {
       </View>
       {/* Tabs */}
       <View style={styles.tabs}>
-        {tabs.map((tab, idx) => (
-          <TouchableOpacity key={tab} onPress={() => setActiveTab(idx)} style={[styles.tabItem, activeTab === idx && styles.tabActive]}>
+        {tabNames.map((tab, idx) => (
+          <TouchableOpacity key={tab} onPress={() => setActiveTab(idx)} style={styles.tabItem}>
             <Text style={[styles.tabText, activeTab === idx && styles.tabTextActive]}>{tab}</Text>
+            {activeTab === idx && <View style={styles.tabIndicator} />}
           </TouchableOpacity>
         ))}
       </View>
@@ -41,10 +58,12 @@ export default function BagScreen() {
         </View>
         {/* Category List */}
         {categories.map((cat, idx) => (
-          <View key={cat.label} style={styles.catCard}>
-            <Image source={cat.image} style={styles.catImg} />
-            <Text style={styles.catLabel}>{cat.label}</Text>
-          </View>
+          <TouchableOpacity key={cat.label} style={styles.catCard}>
+            <View style={styles.catRow}>
+              <Text style={styles.catLabel}>{cat.label}</Text>
+              <Image source={cat.image} style={styles.catImg} />
+            </View>
+          </TouchableOpacity>
         ))}
       </ScrollView>
     </View>
@@ -58,12 +77,13 @@ const styles = StyleSheet.create({
   tabs: { flexDirection: 'row', justifyContent: 'space-around', marginBottom: 8, borderBottomWidth: 1, borderColor: '#eee' },
   tabItem: { paddingVertical: 8, paddingHorizontal: 16 },
   tabText: { fontSize: 16, color: '#888' },
-  tabActive: { borderBottomWidth: 2, borderColor: 'tomato' },
-  tabTextActive: { color: 'tomato', fontWeight: '700' },
-  banner: { backgroundColor: 'tomato', borderRadius: 8, margin: 16, padding: 24, alignItems: 'center' },
+  tabIndicator: { height: 2, backgroundColor: '#2196F3', width: '80%', marginTop: 4, borderRadius: 2 },
+  tabTextActive: { color: '#D6281B', fontWeight: '700' },
+  banner: { backgroundColor: '#D6281B', borderRadius: 10, marginHorizontal: 16, marginBottom: 16, padding: 18, alignItems: 'center', borderWidth: 3, borderColor: '#2196F3' },
   bannerTitle: { color: '#fff', fontSize: 22, fontWeight: 'bold', marginBottom: 4 },
   bannerSubtitle: { color: '#fff', fontSize: 16 },
-  catCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#f7f7f7', borderRadius: 8, marginHorizontal: 16, marginBottom: 12, padding: 8 },
-  catImg: { width: 80, height: 60, borderRadius: 8, marginRight: 12 },
-  catLabel: { fontSize: 18, fontWeight: '600' },
+  catCard: { backgroundColor: '#f9f9f9', borderRadius: 12, marginHorizontal: 16, marginBottom: 12, padding: 12 },
+  catRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  catLabel: { fontSize: 17, fontWeight: '600', color: '#333' },
+  catImg: { width: 80, height: 80, borderRadius: 10, marginLeft: 12 },
 });
