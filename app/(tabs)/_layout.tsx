@@ -12,6 +12,10 @@ export default function TabLayout() {
               return <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color} />;
             case 'shop':
               return <Ionicons name={focused ? 'cart' : 'cart-outline'} size={size} color={color} />;
+            case 'favorites':
+              return <Ionicons name={focused ? 'heart' : 'heart-outline'} size={size} color={color} />;
+            case 'profile':
+              return <FontAwesome name={focused ? 'user' : 'user-o'} size={size} color={color} />;
             case 'category':
               return <MaterialCommunityIcons name={focused ? 'shape' : 'shape-outline'} size={size} color={color} />;
             case 'catalog':
@@ -27,11 +31,13 @@ export default function TabLayout() {
         headerShown: false,
       })}
     >
-      <Tabs.Screen name="home" options={{ title: 'Home' }} />
+  <Tabs.Screen name="home" options={{ title: 'Home' }} />
   <Tabs.Screen name="shop" options={{ title: 'Shop' }} />
-      <Tabs.Screen name="category" options={{ title: 'Category' }} />
-      <Tabs.Screen name="catalog" options={{ title: 'Catalog' }} />
-      <Tabs.Screen name="filter" options={{ title: 'Filter' }} />
+  <Tabs.Screen name="favorites" options={{ title: 'Favorites' }} />
+  <Tabs.Screen name="profile" options={{ title: 'Profile' }} />
+  <Tabs.Screen name="category" options={{ title: 'Category' }} />
+  <Tabs.Screen name="catalog" options={{ title: 'Catalog' }} />
+  <Tabs.Screen name="filter" options={{ title: 'Filter' }} />
     </Tabs>
   );
 }
