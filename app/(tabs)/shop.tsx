@@ -8,21 +8,19 @@ const categoriesData = {
     { label: 'Vest', image: require('../../assets/images/vest.jpg') },
     { label: 'Cardigan Knit', image: require('../../assets/images/cardigan.jpg') },
     { label: 'Clothes', image: require('../../assets/images/celana.jpg') },
-    { label: 'Skirt', image: require('../../assets/images/blouse.jpg') },
+    { label: 'Skirt', image: require('../../assets/images/rok.jpg') },
     { label: 'Shoes', image: require('../../assets/images/shoes.jpg') },
     { label: 'Accesories', image: require('../../assets/images/aksesoris.jpg') },
   ],
   Men: [
-    { label: 'New', image: require('../../assets/images/2.jpg') },
-    { label: 'Clothes', image: require('../../assets/images/3.jpg') },
-    { label: 'Shoes', image: require('../../assets/images/4.jpg') },
-    { label: 'Accesories', image: require('../../assets/images/1.jpg') },
+    { label: 'Tshirt', image: require('../../assets/images/tshirt.jpg') },
+    { label: 'Clothes', image: require('../../assets/images/celana laki2.jpg') },
+    { label: 'Shoes', image: require('../../assets/images/sepatu laki2.jpg') },
+    { label: 'Accesories', image: require('../../assets/images/aksesoris laki2.jpg') },
   ],
   Kids: [
-    { label: 'New', image: require('../../assets/images/3.jpg') },
-    { label: 'Clothe', image: require('../../assets/images/4.jpg') },
-    { label: 'Shos', image: require('../../assets/images/1.jpg') },
-    { label: 'Accesorie', image: require('../../assets/images/2.jpg') },
+    { label: 'Girls', image: require('../../assets/images/girls.jpg') },
+    { label: 'Boys', image: require('../../assets/images/boys.jpg') },
   ],
 } as { [key: string]: { label: string; image: any }[] };
 

@@ -8,62 +8,47 @@ import { useFavorites } from '../../src/context/FavoritesContext';
 
 export default function HomeScreen() {
   // Data produk
-  const initialProducts: Product[] = [
-    {
-      id: 1,
-      name: 'Kaos Polos',
-      brand: 'Uniqlo',
-      price: 120000,
-      oldPrice: 150000,
-      image: require('../../assets/images/2.jpg'),
-      discount: 20,
-      rating: 4,
-      ratingCount: 10,
-      favorite: true,
-    },
-    {
-      id: 2,
-      name: 'Kemeja Flanel',
-      brand: 'H&M',
-      price: 180000,
-      oldPrice: 220000,
-      image: require('../../assets/images/3.jpg'),
-      discount: 18,
-      rating: 4.5,
-      ratingCount: 8,
-      favorite: false,
-    },
-    {
-      id: 3,
-      name: 'Celana Jeans',
-      brand: 'Levi’s',
-      price: 250000,
-      oldPrice: 300000,
-      image: require('../../assets/images/4.jpg'),
-      discount: 17,
-      rating: 4.2,
-      ratingCount: 12,
-      favorite: true,
-    },
-    {
-      id: 4,
-      name: 'Jaket Hoodie',
-      brand: 'Erigo',
-      price: 200000,
-      oldPrice: 250000,
-      image: require('../../assets/images/5.jpg'),
-      discount: 20,
-      rating: 4.7,
-      ratingCount: 15,
-      favorite: false,
-    },
+  // Data produk untuk setiap baris (5 baris, masing-masing gambar berbeda)
+  const productRows: Product[][] = [
+    [
+      { id: 1, name: 'Kaos Polos', brand: 'Uniqlo', price: 120000, oldPrice: 150000, image: require('../../assets/images/kaos uniqlo laki2.jpg'), discount: 20, rating: 4, ratingCount: 10, favorite: true },
+      { id: 2, name: 'Kemeja Flanel', brand: 'H&M', price: 180000, oldPrice: 220000, image: require('../../assets/images/kemeja flanel laki2.jpg'), discount: 18, rating: 4.5, ratingCount: 8, favorite: false },
+      { id: 3, name: 'Celana Jeans', brand: 'H&M', price: 170000, oldPrice: 220000, image: require('../../assets/images/celana jeans laki2.jpg'), discount: 18, rating: 4.5, ratingCount: 8, favorite: false },
+      { id: 4, name: 'Hoodie', brand: 'H&M', price: 180000, oldPrice: 220000, image: require('../../assets/images/hoodie.jpg'), discount: 18, rating: 4.5, ratingCount: 8, favorite: false },
+      { id: 5, name: 'Celana Pendek', brand: 'Uniqlo', price: 160000, oldPrice: 180000, image: require('../../assets/images/celana pendek laki2.jpg'), discount: 18, rating: 4.5, ratingCount: 8, favorite: false },
+
+    ],
+    [
+      { id: 1, name: 'Dress', brand: 'Uniqlo', price: 250000, oldPrice: 300000, image: require('../../assets/images/dress.jpg'), discount: 17, rating: 4.2, ratingCount: 12, favorite: true },
+      { id: 2, name: 'Blazer', brand: 'Erigo', price: 200000, oldPrice: 250000, image: require('../../assets/images/blazer.jpg'), discount: 20, rating: 4.7, ratingCount: 15, favorite: false },
+      { id: 3, name: 'Rok', brand: 'Gaudi', price: 200000, oldPrice: 250000, image: require('../../assets/images/rok.jpg'), discount: 20, rating: 4.7, ratingCount: 15, favorite: false },
+      { id: 4, name: 'Cardigan', brand: 'Colorbox', price: 200000, oldPrice: 250000, image: require('../../assets/images/knit.jpg'), discount: 20, rating: 4.7, ratingCount: 15, favorite: false },
+      { id: 5, name: 'Sweater', brand: 'Uniqlo', price: 160000, oldPrice: 180000, image: require('../../assets/images/sweater.jpg'), discount: 18, rating: 4.5, ratingCount: 8, favorite: false },
+
+    ],
+    [
+      { id: 1, name: 'Haircules', brand: 'Miniso', price: 210000, oldPrice: 260000, image: require('../../assets/images/jepitan.jpg'), discount: 19, rating: 4.3, ratingCount: 9, favorite: false },
+      { id: 2, name: 'Anting Mutiara', brand: 'Strobery', price: 230000, oldPrice: 270000, image: require('../../assets/images/anting.jpg'), discount: 15, rating: 4.1, ratingCount: 7, favorite: false },
+      { id: 3, name: 'Set Aksesoris', brand: 'Strobery', price: 230000, oldPrice: 270000, image: require('../../assets/images/paketan.jpg'), discount: 15, rating: 4.1, ratingCount: 7, favorite: false },
+      { id: 4, name: 'Gelang', brand: 'Miniso', price: 230000, oldPrice: 270000, image: require('../../assets/images/aksesoris laki2.jpg'), discount: 15, rating: 4.1, ratingCount: 7, favorite: false },
+      { id: 5, name: 'Jam Tangan', brand: 'Alexandre Christie', price: 230000, oldPrice: 270000, image: require('../../assets/images/jam tangan.jpg'), discount: 15, rating: 4.1, ratingCount: 7, favorite: false },
+    
+    ],
+    [
+      { id: 7, name: 'Kaos Lengan Panjang', brand: 'Cotton On', price: 140000, oldPrice: 180000, image: require('../../assets/images/partial-react-logo.png'), discount: 22, rating: 4.6, ratingCount: 11, favorite: false },
+      { id: 8, name: 'Celana Pendek', brand: 'Hollister', price: 160000, oldPrice: 200000, image: require('../../assets/images/react-logo.png'), discount: 20, rating: 4.4, ratingCount: 13, favorite: false },
+    ],
+    [
+      { id: 9, name: 'Kemeja Batik', brand: 'Batik Keris', price: 190000, oldPrice: 240000, image: require('../../assets/images/splash-icon.png'), discount: 21, rating: 4.5, ratingCount: 10, favorite: false },
+      { id: 10, name: 'Jaket Kulit', brand: 'Lea', price: 350000, oldPrice: 400000, image: require('../../assets/images/favicon.png'), discount: 12, rating: 4.0, ratingCount: 6, favorite: false },
+    ],
   ];
-  const [products, setProducts] = useState<Product[]>(initialProducts);
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
 
+  // Hapus semua penggunaan setProducts dan products, gunakan productRows saja
   const handleFavorite = (id: number) => {
-    setProducts(prev => prev.map(p => p.id === id ? { ...p, favorite: !isFavorite(id) } : p));
-    const prod = products.find(p => p.id === id);
+    const allProducts = productRows.flat();
+    const prod = allProducts.find(p => p.id === id);
     if (!prod) return;
     if (!isFavorite(id)) {
       addFavorite({ ...prod, favorite: true });
@@ -104,11 +89,11 @@ export default function HomeScreen() {
           </View>
         </View>
         <Text style={styles.section}>Penawaran</Text>
-        {[...Array(5)].map((_, rowIdx) => (
+        {productRows.map((row, rowIdx) => (
           <View key={rowIdx} style={styles.offerRow}>
             <FlatList
               horizontal
-              data={products}
+              data={row}
               keyExtractor={(item: Product) => item.id + '-' + rowIdx}
               renderItem={({ item }) => (
                 <ProductCard
