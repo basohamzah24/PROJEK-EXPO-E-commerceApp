@@ -4,10 +4,13 @@ import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'rea
 
 const categoriesData = {
   Women: [
-    { label: 'New', image: require('../../assets/images/1.jpg') },
-    { label: 'Clothes', image: require('../../assets/images/2.jpg') },
-    { label: 'Shoes', image: require('../../assets/images/3.jpg') },
-    { label: 'Accesories', image: require('../../assets/images/4.jpg') },
+    { label: 'Blouse', image: require('../../assets/images/blouse.jpg') },
+    { label: 'Vest', image: require('../../assets/images/vest.jpg') },
+    { label: 'Cardigan Knit', image: require('../../assets/images/cardigan.jpg') },
+    { label: 'Clothes', image: require('../../assets/images/celana.jpg') },
+    { label: 'Skirt', image: require('../../assets/images/blouse.jpg') },
+    { label: 'Shoes', image: require('../../assets/images/shoes.jpg') },
+    { label: 'Accesories', image: require('../../assets/images/aksesoris.jpg') },
   ],
   Men: [
     { label: 'New', image: require('../../assets/images/2.jpg') },
