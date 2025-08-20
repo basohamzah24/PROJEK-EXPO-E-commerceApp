@@ -1,9 +1,23 @@
 import { Feather, FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs, useRouter } from 'expo-router';
+import { onAuthStateChanged } from 'firebase/auth';
+import React, { useEffect, useState } from 'react';
 import { FavoritesProvider } from '../../src/context/FavoritesContext';
+import { auth } from '../../src/firebaseConfig';
 
 export default function TabLayout() {
+  const router = useRouter();
+  const [authChecked, setAuthChecked] = useState(false);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        router.replace('/login');
+      }
+      setAuthChecked(true);
+    });
+    return () => unsubscribe();
+  }, []);
+  if (!authChecked) return null;
   return (
     <FavoritesProvider>
       <Tabs

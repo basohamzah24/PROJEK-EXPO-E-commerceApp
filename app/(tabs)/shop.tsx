@@ -1,7 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-
+import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 const categoriesData = {
   Women: [
     { label: 'Blouse', image: require('../../assets/images/blouse.jpg') },
@@ -26,22 +25,38 @@ const categoriesData = {
 
 // const tabs = ['Women', 'Men', 'Kids'];
 
-export default function BagScreen() {
+export default function ShopScreen() {
   const [activeTab, setActiveTab] = useState(0);
+  const [searchActive, setSearchActive] = useState(false);
+  const [searchText, setSearchText] = useState('');
   const tabNames = ['Women', 'Men', 'Kids'];
-  const categories: { label: string; image: any }[] = categoriesData[tabNames[activeTab]];
+  let categories: { label: string; image: any }[] = categoriesData[tabNames[activeTab]];
+  if (searchText.trim()) {
+    categories = categories.filter(cat => cat.label.toLowerCase().includes(searchText.trim().toLowerCase()));
+  }
   return (
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity>
-          <Ionicons name="arrow-back" size={24} color="black" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Categories</Text>
-        <TouchableOpacity>
+        <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
+          <Text style={styles.headerTitle}>Categories</Text>
+        </View>
+        <TouchableOpacity onPress={() => setSearchActive(s => !s)}>
           <Ionicons name="search" size={24} color="black" />
         </TouchableOpacity>
       </View>
+      {searchActive && (
+        <View style={styles.searchBoxWrapper}>
+          <TextInput
+            style={styles.searchBox}
+            placeholder="Search category..."
+            value={searchText}
+            onChangeText={setSearchText}
+            autoFocus
+            clearButtonMode="while-editing"
+          />
+        </View>
+      )}
       {/* Tabs */}
       <View style={styles.tabs}>
         {tabNames.map((tab, idx) => (
@@ -72,6 +87,19 @@ export default function BagScreen() {
 }
 
 const styles = StyleSheet.create({
+  searchBoxWrapper: {
+    paddingHorizontal: 16,
+    marginBottom: 8,
+  },
+  searchBox: {
+    backgroundColor: '#f2f2f2',
+    borderRadius: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: '#eee',
+  },
   container: { flex: 1, backgroundColor: '#fff' },
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 16 },
   headerTitle: { fontSize: 20, fontWeight: '700' },

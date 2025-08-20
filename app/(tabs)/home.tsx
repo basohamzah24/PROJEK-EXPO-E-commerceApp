@@ -7,6 +7,9 @@ import { useFavorites } from '../../src/context/FavoritesContext';
 
 
 export default function HomeScreen() {
+  const scrollRef = React.useRef<ScrollView>(null);
+  // State untuk modal semua penawaran
+  const [allOffersVisible, setAllOffersVisible] = useState(false);
   // Data produk
   // Data produk untuk setiap baris (5 baris, masing-masing gambar berbeda)
   const productRows: Product[][] = [
@@ -78,7 +81,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView ref={scrollRef} showsVerticalScrollIndicator={false}>
         <View style={styles.bannerWrapper}>
           <Image source={require('../../assets/images/1.jpg')} style={styles.banner} resizeMode="cover" />
           <View style={styles.bannerTextBottomLeft}>
@@ -86,9 +89,21 @@ export default function HomeScreen() {
               <Text style={[styles.title, { fontFamily: 'Anton-Regular', fontWeight: '400', marginBottom: -25 }]}>Fashion</Text>
               <Text style={[styles.title, { fontFamily: 'Anton-Regular', fontWeight: '400' }]}>Sale</Text>
             </View>
+            {/* Tombol Check */}
+            <TouchableOpacity
+              style={styles.checkBtn}
+              onPress={() => {
+                // Scroll ke bagian produk 'New'
+                setTimeout(() => {
+                  scrollRef.current?.scrollTo({ y: 635, animated: true });
+                }, 10);
+              }}
+            >
+              <Text style={styles.checkBtnText}>Check</Text>
+            </TouchableOpacity>
           </View>
         </View>
-        <Text style={styles.section}>Penawaran</Text>
+        <Text style={styles.section}>New</Text>
         {productRows.map((row, rowIdx) => (
           <View key={rowIdx} style={styles.offerRow}>
             <FlatList
@@ -108,6 +123,32 @@ export default function HomeScreen() {
             />
           </View>
         ))}
+        {/* Modal semua penawaran */}
+        <Modal visible={allOffersVisible} animationType="slide" onRequestClose={() => setAllOffersVisible(false)}>
+          <View style={{ flex: 1, backgroundColor: '#fff', paddingTop: 40 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, marginBottom: 10 }}>
+              <Text style={{ fontSize: 22, fontWeight: 'bold' }}>All Offers</Text>
+              <TouchableOpacity onPress={() => setAllOffersVisible(false)}>
+                <Ionicons name="close" size={28} color="#888" />
+              </TouchableOpacity>
+            </View>
+            <FlatList
+              data={productRows.flat()}
+              keyExtractor={(item: Product) => String(item.id) + '-' + item.name}
+              numColumns={2}
+              renderItem={({ item }) => (
+                <ProductCard
+                  item={{ ...item, favorite: isFavorite(item.id) }}
+                  onPress={() => setModalVisible(true)}
+                  onFavorite={() => handleFavorite(item.id)}
+                  // style={{ margin: 8, flex: 1 }}
+                />
+              )}
+              contentContainerStyle={{ padding: 8 }}
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
+        </Modal>
       </ScrollView>
       <SizeModal
         visible={modalVisible}
@@ -168,6 +209,26 @@ function SizeModal({ visible, onClose, sizes, selectedSize, setSelectedSize, onA
 }
 }
 const styles = StyleSheet.create({
+  checkBtn: {
+    backgroundColor: '#D6281B',
+    paddingHorizontal: 24,
+    paddingVertical: 10,
+    borderRadius: 24,
+    alignSelf: 'flex-start',
+    marginTop: 16,
+    marginLeft: 0,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  checkBtnText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 18,
+    letterSpacing: 1,
+  },
   offerRow: { marginBottom: 24 },
   offerTitle: { fontSize: 16, fontWeight: '600', marginLeft: 16, marginBottom: 8, color: '#D6281B' },
   closeBtn: { position: 'absolute', top: 16, right: 16, zIndex: 10 },
