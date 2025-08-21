@@ -33,18 +33,40 @@ export default function HomeScreen() {
       { id: 1, name: 'Haircules', brand: 'Miniso', price: 210000, oldPrice: 260000, image: require('../../assets/images/jepitan.jpg'), discount: 19, rating: 4.3, ratingCount: 9, favorite: false },
       { id: 2, name: 'Anting Mutiara', brand: 'Strobery', price: 230000, oldPrice: 270000, image: require('../../assets/images/anting.jpg'), discount: 15, rating: 4.1, ratingCount: 7, favorite: false },
       { id: 3, name: 'Set Aksesoris', brand: 'Strobery', price: 230000, oldPrice: 270000, image: require('../../assets/images/paketan.jpg'), discount: 15, rating: 4.1, ratingCount: 7, favorite: false },
-      { id: 4, name: 'Gelang', brand: 'Miniso', price: 230000, oldPrice: 270000, image: require('../../assets/images/aksesoris laki2.jpg'), discount: 15, rating: 4.1, ratingCount: 7, favorite: false },
+      { id: 4, name: 'Kacamata', brand: 'Balenciaga', price: 230000, oldPrice: 270000, image: require('../../assets/images/kacamata.jpg'), discount: 15, rating: 4.1, ratingCount: 7, favorite: false },
       { id: 5, name: 'Jam Tangan', brand: 'Alexandre Christie', price: 230000, oldPrice: 270000, image: require('../../assets/images/jam tangan.jpg'), discount: 15, rating: 4.1, ratingCount: 7, favorite: false },
+      { id: 6, name: 'Topi', brand: 'CREATIVE', price: 230000, oldPrice: 270000, image: require('../../assets/images/topi 2.jpg'), discount: 15, rating: 4.1, ratingCount: 7, favorite: false },
     
     ],
     [
-      { id: 7, name: 'Kaos Lengan Panjang', brand: 'Cotton On', price: 140000, oldPrice: 180000, image: require('../../assets/images/partial-react-logo.png'), discount: 22, rating: 4.6, ratingCount: 11, favorite: false },
-      { id: 8, name: 'Celana Pendek', brand: 'Hollister', price: 160000, oldPrice: 200000, image: require('../../assets/images/react-logo.png'), discount: 20, rating: 4.4, ratingCount: 13, favorite: false },
+      { id: 1, name: 'One-strap Shoes', brand: 'Weiweinylang', price: 140000, oldPrice: 180000, image: require('../../assets/images/Weiweinylang.jpg'), discount: 22, rating: 4.6, ratingCount: 11, favorite: false },
+      { id: 2, name: 'Cross Strap Shoes', brand: 'Weiweinylang', price: 160000, oldPrice: 200000, image: require('../../assets/images/sepatu cewe.jpg'), discount: 20, rating: 4.4, ratingCount: 13, favorite: false },
+      { id: 3, name: 'Single Strap Shoes', brand: 'Agsdon', price: 190000, oldPrice: 200000, image: require('../../assets/images/Agsdon.jpg'), discount: 25, rating: 4.7, ratingCount: 13, favorite: false },
+      { id: 4, name: 'Ribbon Shoes', brand: 'Hollister', price: 170000, oldPrice: 200000, image: require('../../assets/images/sepatu cewe 2.jpg'), discount: 20, rating: 4.5, ratingCount: 13, favorite: false },
+      { id: 5, name: 'Girls Shoes', brand: 'Bostanten', price: 150000, oldPrice: 200000, image: require('../../assets/images/sepatu cewe 3.jpg'), discount: 23, rating: 4.4, ratingCount: 13, favorite: false },
+
+    ],
+    
+    [
+      { id: 1, name: 'Satu Set Cotton', brand: 'H&M', price: 190000, oldPrice: 240000, image: require('../../assets/images/satu set boys kids 2.jpg'), discount: 21, rating: 4.5, ratingCount: 10, favorite: false },
+      { id: 2, name: 'Satu Set Kaos Garis', brand: 'H&M', price: 350000, oldPrice: 400000, image: require('../../assets/images/satu set boy kids 1.jpg'), discount: 12, rating: 4.0, ratingCount: 6, favorite: false },
+      { id: 3, name: 'Satu Set Kaos', brand: 'H&M', price: 350000, oldPrice: 400000, image: require('../../assets/images/satu set boys kids.jpg'), discount: 12, rating: 4.0, ratingCount: 6, favorite: false },
+      { id: 4, name: 'Mini Dress', brand: 'H&M', price: 350000, oldPrice: 400000, image: require('../../assets/images/girls 1.jpg'), discount: 12, rating: 4.0, ratingCount: 6, favorite: false },
+      { id: 5, name: 'Mini Dress', brand: 'H&M', price: 350000, oldPrice: 400000, image: require('../../assets/images/girls 2.jpg'), discount: 12, rating: 4.0, ratingCount: 6, favorite: false },
+      { id: 6, name: 'Mini Dress', brand: 'H&M', price: 350000, oldPrice: 400000, image: require('../../assets/images/girls 3.jpg'), discount: 12, rating: 4.0, ratingCount: 6, favorite: false },
+
     ],
     [
-      { id: 9, name: 'Kemeja Batik', brand: 'Batik Keris', price: 190000, oldPrice: 240000, image: require('../../assets/images/splash-icon.png'), discount: 21, rating: 4.5, ratingCount: 10, favorite: false },
-      { id: 10, name: 'Jaket Kulit', brand: 'Lea', price: 350000, oldPrice: 400000, image: require('../../assets/images/favicon.png'), discount: 12, rating: 4.0, ratingCount: 6, favorite: false },
+      { id: 1, name: 'Flower Shoes', brand: 'Keds Kids', price: 140000, oldPrice: 180000, image: require('../../assets/images/sepatu kids 1.jpg'), discount: 22, rating: 4.6, ratingCount: 11, favorite: false },
+      { id: 2, name: 'Unicorn Series', brand: 'Cross Kids', price: 160000, oldPrice: 200000, image: require('../../assets/images/sepatu kids 2.jpg'), discount: 20, rating: 4.4, ratingCount: 13, favorite: false },
+      { id: 3, name: 'Single Strap Shoes', brand: 'Strite Ride', price: 190000, oldPrice: 200000, image: require('../../assets/images/sepatu kids 3.jpg'), discount: 25, rating: 4.7, ratingCount: 13, favorite: false },
+      { id: 4, name: 'Strappy Shoes', brand: 'Adidas', price: 170000, oldPrice: 200000, image: require('../../assets/images/sepatu cowo 1.jpg'), discount: 20, rating: 4.5, ratingCount: 13, favorite: false },
+      { id: 5, name: 'Strappy Shoes', brand: 'Nike', price: 150000, oldPrice: 200000, image: require('../../assets/images/sepatu cowo 2.jpg'), discount: 23, rating: 4.4, ratingCount: 13, favorite: false },
+      { id: 6, name: 'Strappy Shoes', brand: 'Nike', price: 150000, oldPrice: 200000, image: require('../../assets/images/sepatu cowo 3.jpg'), discount: 25, rating: 4.3, ratingCount: 13, favorite: false },
+
     ],
+
+    
   ];
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
 

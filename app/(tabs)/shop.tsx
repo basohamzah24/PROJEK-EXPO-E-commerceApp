@@ -16,6 +16,8 @@ const categoriesData = {
     { label: 'Clothes', image: require('../../assets/images/celana laki2.jpg') },
     { label: 'Shoes', image: require('../../assets/images/sepatu laki2.jpg') },
     { label: 'Accesories', image: require('../../assets/images/aksesoris laki2.jpg') },
+    { label: 'Hat', image: require('../../assets/images/topi.jpg') },
+
   ],
   Kids: [
     { label: 'Girls', image: require('../../assets/images/girls.jpg') },
