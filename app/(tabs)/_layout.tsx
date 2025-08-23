@@ -16,7 +16,7 @@ export default function TabLayout() {
       setAuthChecked(true);
     });
     return () => unsubscribe();
-  }, []);
+  }, [router]);
   if (!authChecked) return null;
   return (
     <FavoritesProvider>

@@ -1,3 +1,53 @@
+# E-Commerce App (Expo/React Native)
+
+Aplikasi mobile e-commerce modern berbasis Expo (React Native) dengan fitur autentikasi Firebase, tab navigation, dan UI responsif.
+
+## Fitur Utama
+- **Autentikasi Firebase**: Login, register, forgot password, dan logout.
+- **Proteksi Akses**: Semua menu utama (tabs) hanya bisa diakses setelah login.
+- **Profile Dinamis**: Email user yang login tampil di halaman profile.
+- **Favorites & Wishlist**: Simpan produk favorit secara global.
+- **My Orders**: Lihat riwayat pesanan.
+- **Shop & Search**: Cari produk dengan fitur pencarian.
+- **UI Modern**: Tampilan clean, responsif, dan mudah digunakan.
+
+## Struktur Folder
+```
+app/
+   _layout.tsx         # Root stack navigation
+   login.tsx           # Halaman login
+   signup.tsx          # Halaman register
+   forgot-password.tsx # Reset password
+   (tabs)/             # Semua menu utama (home, shop, bag, favorites, profile)
+   screens/
+      my-orders.tsx     # Riwayat pesanan
+src/
+   components/         # Komponen modular (AuthInputs, dsb)
+   theme/              # Colors, style
+   firebaseConfig.ts   # Konfigurasi Firebase
+assets/               # Gambar & font
+```
+
+## Cara Menjalankan
+1. Clone repo ini
+2. Jalankan `npm install`
+3. Edit `src/firebaseConfig.ts` dengan konfigurasi Firebase milik Anda
+4. Jalankan `npx expo start` untuk development
+
+## Teknologi
+- Expo (React Native)
+- Firebase Auth
+- TypeScript
+- Expo Router
+
+## Catatan
+- Semua fitur utama sudah berjalan dan bebas error linting.
+- Untuk build APK/AAB gunakan `eas build` dari Expo.
+- Fitur dapat dikembangkan lebih lanjut: edit profile, notifikasi, filter produk, dsb.
+
+---
+
+> Dibuat oleh basohamzah24, 2025
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).

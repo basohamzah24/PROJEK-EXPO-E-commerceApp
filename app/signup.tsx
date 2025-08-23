@@ -37,7 +37,7 @@ export default function SignupScreen() {
     setError(null);
     setLoading(true);
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
       if (auth.currentUser && name) {
         await updateProfile(auth.currentUser, { displayName: name });
       }
